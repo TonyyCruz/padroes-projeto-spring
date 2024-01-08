@@ -10,9 +10,9 @@ public interface IClientService {
 
     Client findById(Long id);
 
-    void insert(Client client);
+    Client insert(Client client);
 
-    void update(Long id, Client client);
+    Client update(Long id, Client client);
 
     void delete(Long id);
 }
