@@ -33,16 +33,13 @@ public class ClientService implements IClientService {
 
     @Override
     public Client insert(Client client) {
-        String cep = client.getAddress().getCep();
-        persistCep(cep);
+        persistCep(client);
         return clientRepository.save(client);
     }
 
     @Override
     public Client update(Long id, Client client) {
-        String cep = client.getAddress().getCep();
-        persistCep(cep);
-        client.setId(id);
+        persistCep(client);
         return clientRepository.save(client);
     }
 
@@ -51,10 +48,12 @@ public class ClientService implements IClientService {
         clientRepository.deleteById(id);
     }
 
-    private void persistCep(String cep) {
-        if (addressRepository.existsById(cep))
-            return;
-        Address newAddress = cepService.getCepData(cep);
-        addressRepository.save(newAddress);
+    private void persistCep(Client client) {
+        String cep = client.getAddress().getCep();
+        Address address = addressRepository.findById(cep).orElseGet(() -> {
+            Address newAddress = cepService.getCepData(cep);
+            return addressRepository.save(newAddress);
+        });
+        client.setAddress(address);
     }
 }
