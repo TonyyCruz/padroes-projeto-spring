@@ -8,3 +8,14 @@
 
 ### Facade
 - O Facade é um padrão de projeto estrutural que fornece uma interface simplificada para um sistema complexo de classes.
+
+
+Swegger `http://localhost:8080/swagger-ui.html`<br>
+Exemplo de `POST`:<br>
+
+    {
+      "name": "tony",
+      "address": {
+        "cep": "70070-600"
+      }
+    }
