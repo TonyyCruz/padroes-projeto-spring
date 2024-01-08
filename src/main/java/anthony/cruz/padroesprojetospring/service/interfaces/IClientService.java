@@ -1,4 +1,4 @@
-package anthony.cruz.padroesprojetospring.service;
+package anthony.cruz.padroesprojetospring.service.interfaces;
 
 import anthony.cruz.padroesprojetospring.model.Client;
 
